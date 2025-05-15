@@ -1,28 +1,81 @@
 # HelloWorld
 Dự án mới
+
 Học SQL cấp tốc trong 2 tuần
 
- **Chọn tất cả các hàng trong bảng customer.**
-- select *
-from [customers];
+**NGÀY 1:SELECT FROM**
+ 
+-Chọn tất cả các hàng trong bảng customer.
 
-**Hợp tên khách hàng và ngày bán ra.**
+	select *
+	from [customers];
 
-- select c.[first_name] + ' ' +c.[last_name] as "Fullname",
+-Chọn những khách hàng không trùng tên 
+
+
+	select distinct *
+ 	from [customers];
+
+**NGÀY 2: JOIN.**
+
+-Hợp tên khách hàng và ngày bán ra
+
+	select 	c.[first_name] + ' ' +c.[last_name] as "Fullname",
 		s.[order_date]
-from [sales].[customers] as c
-INNER JOIN [sales].[orders] as s on c.[customer_id]=s.customer_id
+	from [sales].[customers] as c
+	INNER JOIN [sales].[orders] as s on c.[customer_id]=s.customer_id
 
-**Lọc đơn đặt hàng đã được giao vào tháng 5, và sắp xếp tăng dần theo năm.**
+**NGÀY 3: GROUP BY, WHERE, ORDER BY**
 
-select [OrderID],
-	count(*) as "TotalOrders", 
- 	year([ShippedDate]) as "năm", 
-  	MONTH([ShippedDate]) as "tháng"
-from [dbo].[Orders]
-where month([ShippedDate])=5
-group by [OrderID], 
-	 YEAR([ShippedDate]), 
-  	 MONTH([ShippedDate])
-order by YEAR([ShippedDate]) asc
+-Lọc đơn đặt hàng đã được giao vào tháng 5, và sắp xếp tăng dần theo năm.
+
+-WHERE lọc trước group by
+ 
+ 	select [OrderID],
+ 		count(*) as "TotalOrders",
+ 		year([ShippedDate]) as "năm", 
+  		MONTH([ShippedDate]) as "tháng"
+	from [dbo].[Orders]
+	where month([ShippedDate])=5
+	group by [OrderID], 
+	 	YEAR([ShippedDate]), 
+  		 MONTH([ShippedDate])
+	order by YEAR([ShippedDate]) asc
+
+ **NGÀY 4: HAVING**
+
+-HAVING đứng sau group by
+ 
+-Lọc ra nhà cung cấp sản phẩm có tổng số lượng hàng trong kho lớn hơn 30 và có trung bình đơn giá có giá trị dưới 50 
+
+	select 	[SupplierID], 
+ 		sum([UnitsInStock]) as "SumUnitStock", 
+   		avg([UnitPrice]) as "AvgPrice"
+	from [dbo].[Products]
+	group by [SupplierID]
+	having sum([UnitsInStock])>30 and avg([UnitPrice])<50
+
+-Hãy cho biết tổng số tiền vận chuyển của từng tháng, trong nửa năm sau của năm 1996
+
+-Sắp xếp theo tháng tăng dần
+
+-Tổng số tiền vận chuyển >1000
+
+	select 	sum([Freight]) as "SumFreight", 
+ 		MONTH([ShippedDate]) as "Tháng"
+	from [dbo].[Orders]
+	where [ShippedDate] between '1996-07-01' and '1996-12-31'
+	group by MONTH([ShippedDate])
+	having sum([Freight])>1000
+	order by MONTH([ShippedDate]) asc 
+
+-Những thành phố có số đơn hàng lớn hơn 16, sắp xếp theo tổng số lượng giảm dần
+
+	select 	[ShipCity], 
+ 		count([OrderID]) as "Tổng đơn hàng"
+	from [dbo].[Orders]
+	group by [ShipCity]
+	having count([OrderID]) >16
+	order by count([OrderID]) desc
+
 
