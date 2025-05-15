@@ -104,9 +104,51 @@ Vậy tồn tại ít nhất 1 trong 2 yếu tố ảnh hưởng đến thu nh�
 
 -Thay đổi Observations từ 10 đổi thành 11
 
--Mở đồng thời 3 biến x,y,z và nhập số liệu X=6 và Z=4 (Nhấn phím shift chọn y, x, z --> Open --> As group)
+-Mở đồng thời 3 biến x,y,z và nhập số liệu X=6 và Z=4 (Nhấn phím shift chọn y, x, z --> Open --> As group --> Edit +/-)
 
-![image](https://github.com/user-attachments/assets/ff98e0d3-227e-4dfc-af4c-443aa45404c3)
+![image](https://github.com/user-attachments/assets/ff98e0d3-227e-4dfc-af4c-443aa45404c3) ![image](https://github.com/user-attachments/assets/825992cd-7bdf-4bc2-9e7d-035f6a9e4754)
+
+-Nhập lệnh: ls y c x z để chạy lại mô hình (sau khi chạy lại sẽ hiển thị dòng chữ 10 after adjustment)
+
+![image](https://github.com/user-attachments/assets/d46503c6-67b0-43c1-9ca2-e9f212b16ca7)
+
+-Ấn vào nhóm lệnh Forecast 
+
+    Trong ô Forecast name: nhập ymu
+    
+    Trong ô S.E. (optional): nhập se
+
+-Nhấn OK
+
+![image](https://github.com/user-attachments/assets/77211241-ab3c-4eca-8a8d-cd06d3be0935)
+
+-Chọn Quick --> Generate series
+
+    Trong ô Enter equation, nhập: se0=sqr(se^2 - 0.571382^2)
+    
+    Chọn OK
+
+    (0.571382 ta lấy ở phần S.E. of regression)
+
+![image](https://github.com/user-attachments/assets/9b0e2ab4-a0ca-4b1b-85fb-99429f264a6f)
+
+-Nhấp vào ô lệnh command:
+
+    genr cabiettren=ymu+se0*2.998
+
+    genr cabietduoi=ymu-se0*2.998
+ 
+(T((n-k) alpha/2) = T(7 0.001) = 2.998)
+
+-Nhấn enter để tạo cabiettren và cabietduoi
+
+-Mở cả 2 phần cabiettren và cabietduoi, ta sẽ thu được giá trị trung bình của Y nằm trong khoảng (19.17349; 18.24012)
+
+![image](https://github.com/user-attachments/assets/83c152aa-f154-44aa-8e96-56dafe8334f2)
+
+Vậy với độ tin cậy 98%, thâm niên công tác là 6 năm và thời gian đào tạo là 4 đơn vị thời gian thì thu nhập trung bình của người lao động sẽ dao động trong khoảng từ 19.17349 triệu đồng đến 18.24012 triệu đồng
+
+
 
 
 
