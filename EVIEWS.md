@@ -142,11 +142,11 @@ Vậy tồn tại ít nhất 1 trong 2 yếu tố ảnh hưởng đến thu nh�
 
 -Nhấn enter để tạo cabiettren và cabietduoi
 
--Mở cả 2 phần cabiettren và cabietduoi, ta sẽ thu được giá trị trung bình của Y nằm trong khoảng (19.17349; 18.24012)
+-Mở cả 2 phần cabiettren và cabietduoi, ta sẽ thu được giá trị trung bình của Y nằm trong khoảng (16.17349; 18.24012)
 
 ![image](https://github.com/user-attachments/assets/83c152aa-f154-44aa-8e96-56dafe8334f2)
 
-Vậy với độ tin cậy 98%, thâm niên công tác là 6 năm và thời gian đào tạo là 4 đơn vị thời gian thì thu nhập trung bình của người lao động sẽ dao động trong khoảng từ 19.17349 triệu đồng đến 18.24012 triệu đồng
+Vậy với độ tin cậy 98%, thâm niên công tác là 6 năm và thời gian đào tạo là 4 đơn vị thời gian thì thu nhập trung bình của người lao động sẽ dao động trong khoảng từ 16.17349 triệu đồng đến 18.24012 triệu đồng
 
 
 
