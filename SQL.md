@@ -165,4 +165,23 @@ Học SQL cấp tốc trong 2 tuần
 	GROUP BY ShipCity
 	HAVING COUNT(*)  <> 1 AND COUNT(*) <> 2
 
+ **NGÀY 7:TRUY VẤN NHIỀU BẢNG"**
 
+Từ 3 bảng customers, orders, shippers in ra mã đơn hàng, tên khách hàng, tên công ty vận chuyển, chỉ ra các đơn hàng giao đến uk năm 1997
+
+Cách 1
+	
+ 	select o.OrderID, c.ContactName, s.CompanyName
+	from [dbo].[Customers] as c, [dbo].[Orders] as o, [dbo].[Shippers] as s
+	where o.CustomerID=c.CustomerID and o.ShipVia=s.ShipperID
+	group by o.OrderID, c.ContactName, o.ShipCountry, year(o.OrderDate), s.CompanyName
+	having o.ShipCountry like'UK' and year(o.OrderDate) = '1997'
+
+Cách 2: Tối ưu hơn
+
+	Select o.ShipCountry, o.OrderID, c.ContactName
+	from [dbo].[Customers] as c, [dbo].[Orders] as o, [dbo].[Shippers] as s
+	where 	c.CustomerID = o.CustomerID  and 
+	  	s.ShipperID = o.ShipVia and 
+	  	Year(o.OrderDate) = 1997 and 
+	 	o.ShipCountry IN ('UK')
