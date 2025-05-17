@@ -147,6 +147,7 @@ Học SQL cấp tốc trong 2 tuần
 	order by  [ShippedDate] asc
 
 7.Hãy cho biết các quốc gia bắt đầu bằng chữ a hoặc g và có số lượng đơn hàng lớn hơn 29
+
 	select [ShipCountry], count([OrderID]) as "Số đơn"
 	from [dbo].[Orders]
 	where [ShipCountry] like '[A,G]%'
