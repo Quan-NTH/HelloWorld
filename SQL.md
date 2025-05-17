@@ -99,3 +99,67 @@ Học SQL cấp tốc trong 2 tuần
 		SUM([CategoryID]) AS [ALL],
 		SUM(DISTINCT[CategoryID]) AS [DISTINCT]
 	FROM  [Northwind].[dbo].[Products];
+
+**Ngày 6: ÔN TẬP**
+1.Hãy cho biết khách hàng nào đặt nhiều hơn 20 đơn hàng, sắp xếp theo thứ tự tổng số đơn hàng giảm dần
+
+	select [CustomerID], count([OrderID]) as "Số đơn"
+	from [dbo].[Orders]
+	group by [CustomerID]
+	having count([OrderID])>20
+	order by count([OrderID]) desc
+
+2.Hãy lọc ra các nhân viên có tổng số đơn hàng lớn hơn hoặc bằng 100, sắp xếp theo tổng số đơn hàng giảm dần
+
+	select [EmployeeID], count([OrderID]) as "Tổng đơn"
+	from [dbo].[Orders]
+	group by[EmployeeID]
+	having count([OrderID])>=100
+	order by count([OrderID]) desc
+
+3.Hãy cho biết những thể loại nào có số sản phẩm khác nhau lớn hơn 11
+
+	select [CategoryID], count([ProductID]) as "Số sản phẩm"
+	from[dbo].[Products]
+	group by [CategoryID]
+	having count([ProductID])>11
+
+4.Hãy cho biết những thể loại nào có số tổng số lượng sản phẩm trong kho lớn hơn 350
+
+	select [CategoryID], sum([UnitsInStock]) as "Tổng số lượng sp"
+	from [dbo].[Products]
+	group by[CategoryID]
+	having sum([UnitsInStock])>350
+
+5.Hãy cho biết những quốc gia nào có nhiều hơn 7 đơn hàng
+
+	select [ShipCountry], count([OrderID]) as "Số đơn"
+	from [dbo].[Orders]
+	group by [ShipCountry]
+	having count([OrderID])>7
+
+6.Hãy cho biết những ngày nào có nhiều hơn 5 đơn hàng được giao, sắp xếp tăng dần theo ngày giao hàng
+
+	select [ShippedDate], count([OrderID]) as " số đơn"
+	from [dbo].[Orders]
+	group by[ShippedDate]
+	having count([OrderID])>5
+	order by  [ShippedDate] asc
+
+7.Hãy cho biết các quốc gia bắt đầu bằng chữ a hoặc g và có số lượng đơn hàng lớn hơn 29
+	select [ShipCountry], count([OrderID]) as "Số đơn"
+	from [dbo].[Orders]
+	where [ShipCountry] like '[A,G]%'
+	group by[ShipCountry]
+	having count([OrderID])>29
+	order by count([OrderID]) desc
+
+8.Hãy cho biết những thành phố nào có số lượng đơn hàng được giao là khác 1 và 2, ngày đặt hàng từ '1977-04-01' đến '1977-08-31'
+
+	SELECT ShipCity,COUNT(*) AS Tongdonhang
+	FROM Orders
+	WHERE OrderDate BETWEEN '1997-04-01' AND '1997-08-31'
+	GROUP BY ShipCity
+	HAVING COUNT(*)  <> 1 AND COUNT(*) <> 2
+
+
