@@ -101,6 +101,7 @@ Học SQL cấp tốc trong 2 tuần
 	FROM  [Northwind].[dbo].[Products];
 
 **Ngày 6: ÔN TẬP**
+
 1.Hãy cho biết khách hàng nào đặt nhiều hơn 20 đơn hàng, sắp xếp theo thứ tự tổng số đơn hàng giảm dần
 
 	select [CustomerID], count([OrderID]) as "Số đơn"
