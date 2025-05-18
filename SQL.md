@@ -185,3 +185,21 @@ Cách 2: Tối ưu hơn
 	  	s.ShipperID = o.ShipVia and 
 	  	Year(o.OrderDate) = 1997 and 
 	 	o.ShipCountry IN ('UK')
+
+**NGÀY 8: UNION**
+
+	select City, Country from Customers
+	where Country like 'U%'
+	union
+	select city ,Country from Suppliers
+	where City = 'London'
+	union 
+	select ShipCity, ShipCountry from Orders
+	where ShipCountry='USA';
+
+-Hợp nhất country từ bảng suppliers và customers, sắp xếp tăng dần
+
+	select distinct Country from Suppliers
+	union
+	select distinct Country from Customers
+	order by Country asc
